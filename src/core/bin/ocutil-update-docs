@@ -1,0 +1,53 @@
+#!/bin/sh
+
+# update documentation
+
+GIT_DIR=/opt/cls/git
+WWW_ROOT=/var/www
+HTML_OUT_DIR="$WWW_ROOT/doc"
+
+TMP_DIR=/tmp/update-docs
+
+if [ -d "$TMP_DIR" ] ; then
+	echo "Temp dir $TMP_DIR already exists, cleaning it..."
+	rm -rf "$TMP_DIR"
+	echo "Done"
+fi
+
+echo "Creating $TMP_DIR"
+mkdir -p "$TMP_DIR"
+
+if [ ! -d "$TMP_DIR" ] ; then
+	echo "PANIC: $TMP_DIR does not exist"
+	exit 1
+fi
+
+mkdir -p "$HTML_OUT_DIR"
+
+for repo in "$GIT_DIR"/*.git ; do
+	name=$(basename "$repo" .git)
+	OUT_DIR="$HTML_OUT_DIR/$name"
+	START_DIR=$(pwd)
+	WORK_DIR="$TMP_DIR/$name"
+	echo "processing repository: $name"
+	git clone "$repo" "$WORK_DIR"
+	cd "$WORK_DIR"
+	if [ -e ".clsdoc.sh" ] ; then
+		echo ".clsdoc.sh found, running it"
+		./.clsdoc.sh
+	fi
+	if [ -d "./html" ] ; then
+		echo "./html was generated, copying to $OUT_DIR"
+		if [ -d "$OUT_DIR" ] ; then
+			echo "$OUT_DIR exists, removing it..."
+			rm -rf "$OUT_DIR"
+		fi
+		mkdir -p "$OUT_DIR"
+		cp -r ./html/* "$OUT_DIR"
+		rm -rf ./html
+	fi
+	echo "finished with $name"
+done
+
+echo "all documentation has been rebuilt"
+	

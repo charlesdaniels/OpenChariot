@@ -1,0 +1,11 @@
+#!/bin/sh
+
+# Running other automated scripts sometimes results in directories in /var/www
+# being owned by root. This script which fix this problem. 
+
+WWW_ROOT="/var/www"
+WWW_USER="lighttpd"
+WWW_GROUP="lighttpd"
+OCTAL_PERM=755
+chown -R "$WWW_USER":"$WWW_GROUP" "$WWW_ROOT"
+chmod -R "$OCTAL_PERM" "$WWW_ROOT"

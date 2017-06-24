@@ -1,0 +1,26 @@
+#!/bin/sh
+
+# generate OpenChariot configuration and dump it to the console such that one
+# can call $(ocutil-getconfig) and have all the appropriate environment
+# variables setup correctly.
+
+# scripts check for OC_MAGIC equal to OpenChariot, and panic if it is not, to
+# ensure they were able to load the configuration appropriately. This line
+# should not be modified.
+echo 'export OC_MAGIC=OpenChariot'
+
+# Files named like $reponame.newgit placed in this directory are created as new
+# git repositories by ocutil-process-gitspool.
+echo 'export OC_GITSPOOL=/var/openchariot/gitspool'
+
+# The git user account, should almost always be 'git'.
+echo 'export OC_GIT_USER=git'
+
+# The git group, should almost always be 'git'.
+echo 'export OC_GIT_GROUP=git'
+
+# The directory in which to place git repositories.
+echo 'export OC_GIT_DIR=/git'
+
+# The user group which should be able to write into OC_GITSPOOL.
+echo 'export OC_GITSPOOL_GROUP=openchariot'

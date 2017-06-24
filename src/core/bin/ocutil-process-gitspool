@@ -1,0 +1,45 @@
+#!/bin/sh
+
+# Users may write to $OC_GITSPOOL empty files with the name
+# "$reponame.newgit". When this script runs, for each such file, it will create
+# an appropriate git repository, then delete the .newgit file. Should the
+# specified repository name already exist, nothing will happen, and the .newgit
+# file will be deleted silently. This script will handle managing permissions
+# on OC_GITSPOOL.
+
+$(ocutil-getconfig)
+if [ $OC_MAGIC -ne "OpenChariot" ] ; then
+	echo "PANIC: OC_MAGIC not defined, is ocutil-getconfig in PATH?"
+	exit 1
+fi
+
+if [ ! -d "$OC_GITSPOOL" ] ; then
+	echo "$OC_GITSPOOL does not exist, creating it..."
+	mkdir -p "$OC_GITSPOOL"
+fi
+
+chown -R $OC_GIT_USER:$OC_GITSPOOL_GROUP "$OC_GITSPOOL"
+chmod -R $GITSPOOL_PERMS "$OC_GITSPOOL"
+
+echo "Processing git spool..."
+for f in "$OC_GITSPOOL"/*.newgit ; do
+	if [ ! -e "$f" ] ; then
+		echo "spool appears to be empty, giving up"
+		break
+	fi
+	name=$(basename "$f" .newgit)
+	echo "processing new repo: $name"
+	if [ -e "$GIT_DIR/$name.git" ] ; then
+		echo "$name.git already exists, skipping it"
+		rm "$f"
+		continue
+	fi
+	cd "$GIT_DIR"
+	sudo -u $GIT_USER mkdir "$name.git"
+	cd "$name.git"
+	sudo -u $GIT_USER git --bare init
+	rm "$f"
+	echo "finished processing new repo $name"
+done
+
+echo "finished processing git spool."

@@ -1,0 +1,37 @@
+#!/bin/sh
+
+# update your BugsEverywhere static HTML pages. 
+
+# dir where git repos live
+GIT_DIR=/opt/cls/git 
+WWW_ROOT=/var/www
+HTML_OUT_DIR="$WWW_ROOT/BugsEverywhere"
+TMP_DIR=/tmp/be-update
+
+if [ -d "$TMP_DIR" ] ; then
+	echo "Temp dir $TMP_DIR already exists, cleaning it..."
+	rm -rf "$TMP_DIR"
+	echo "Done"
+fi
+
+echo "Creating $TMP_DIR"
+mkdir -p "$TMP_DIR"
+
+if [ ! -d "$TMP_DIR" ] ; then
+	echo "PANIC: $TMP_DIR does not exist"
+	exit 1
+fi
+
+for repo in "$GIT_DIR/"*.git ; do
+	name=$(basename "$repo" .git)
+	OUT_DIR="$HTML_OUT_DIR/$name"
+	mkdir -p "$OUT_DIR"
+	START_DIR="$(pwd)"
+	echo "Processing repo $name..."
+	git clone "$repo" "$TEMP_DIR/$name"	
+	cd "$TEMP_DIR/$name"
+	be html --export-html --output="$OUT_DIR"
+	cd "$START_DIR"
+done
+
+echo "BE update complete"

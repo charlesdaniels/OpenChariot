@@ -1,0 +1,23 @@
+#!/bin/sh
+
+# update your gitstats static HTML pages. 
+
+# dir where git repos live
+GIT_DIR=/opt/cls/git 
+WWW_ROOT=/var/www
+HTML_OUT_DIR="$WWW_ROOT/gitstats"
+
+PATH=$PATH:/opt/cls/bin
+
+export GNUPLOT_DEFAULT_GDFONT=LiberationSans-Regular
+export GDFONTPATH=/usr/share/fonts/liberation
+
+for repo in "$GIT_DIR/"*.git ; do
+	name=$(basename "$repo" .git)
+	OUT_DIR="$HTML_OUT_DIR/$name"
+	mkdir -p "$OUT_DIR"
+	echo "Processing repo $name..."
+	gitstats "$repo" "$OUT_DIR"
+done
+
+echo "gitstats update complete"
