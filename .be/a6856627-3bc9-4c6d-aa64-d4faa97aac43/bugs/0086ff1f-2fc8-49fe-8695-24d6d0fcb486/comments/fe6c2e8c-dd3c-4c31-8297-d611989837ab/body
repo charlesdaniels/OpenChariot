@@ -1,0 +1,7 @@
+I have added a simple shell script which when executed, will emit a series of
+export commands that can be executed in sh or compatbile, and encode the
+configuration data for the OC install. Support for this needs to be added to
+all of the pertinent scripts. The actual storage of the configuration should
+probably be moved to some file in /etc and parsed by the shell script, this way
+Python or Perl based OC modules that may be added in the future can parse the
+config also.
