@@ -1,11 +1,13 @@
 #!/bin/sh
 
-# Running other automated scripts sometimes results in directories in /var/www
-# being owned by root. This script which fix this problem. 
+# Some other automated scripts may wind up placing files not owned by the
+# correct user account in OC_WWW_ROOT.
 
-WWW_ROOT="/var/www"
-WWW_USER="lighttpd"
-WWW_GROUP="lighttpd"
-OCTAL_PERM=755
-chown -R "$WWW_USER":"$WWW_GROUP" "$WWW_ROOT"
-chmod -R "$OCTAL_PERM" "$WWW_ROOT"
+$(ocutil-getconfig)
+if [ $OC_MAGIC -ne "OpenChariot" ] ; then
+	echo "PANIC: OC_MAGIC not defined, is ocutil-getconfig in PATH?"
+	exit 1
+fi
+
+chown -R "$OC_WWW_USER":"$OC_WWW_GROUP" "$OC_WWW_ROOT"
+chmod -R "$OC_WWW_PERM" "$OC_WWW_ROOT"

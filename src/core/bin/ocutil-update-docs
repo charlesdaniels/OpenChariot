@@ -2,9 +2,13 @@
 
 # update documentation
 
-GIT_DIR=/opt/cls/git
-WWW_ROOT=/var/www
-HTML_OUT_DIR="$WWW_ROOT/doc"
+$(ocutil-getconfig)
+if [ $OC_MAGIC -ne "OpenChariot" ] ; then
+	echo "PANIC: OC_MAGIC not defined, is ocutil-getconfig in PATH?"
+	exit 1
+fi
+
+HTML_OUT_DIR="$OC_WWW_ROOT/doc"
 
 TMP_DIR=/tmp/update-docs
 
@@ -24,7 +28,7 @@ fi
 
 mkdir -p "$HTML_OUT_DIR"
 
-for repo in "$GIT_DIR"/*.git ; do
+for repo in "$OC_GIT_DIR"/*.git ; do
 	name=$(basename "$repo" .git)
 	OUT_DIR="$HTML_OUT_DIR/$name"
 	START_DIR=$(pwd)

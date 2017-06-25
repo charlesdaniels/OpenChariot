@@ -24,3 +24,16 @@ echo 'export OC_GIT_DIR=/git'
 
 # The user group which should be able to write into OC_GITSPOOL.
 echo 'export OC_GITSPOOL_GROUP=openchariot'
+
+# The directory on your HTTP server where OpenChariot should do it's thing.
+echo 'export OC_WWW_ROOT=/var/www'
+
+# User account which should own OC_WWW_ROOT
+echo 'export OC_WWW_USER=lighttpd'
+
+# Group which should own OC_WWW_ROOT
+echo 'export OC_WWW_GROUP=lighttpd'
+
+# Desired permissions in octal for OC_WWW_ROOT
+echo 'export OC_WWW_PERM=755'
+
