@@ -1,0 +1,18 @@
+#!/bin/sh
+
+# Validate that required dependencies are in $PATH
+
+if [ ! -e `which be` ] ; then
+	echo "ERROR: dependency 'be' is not in PATH!"
+	exit 1
+fi
+
+if [ ! -e `which gitstats` ] ; then
+	echo "ERROR: dependency 'gitstats' is not in PATH!"
+	exit 1
+fi
+
+if [ ! -e `which git` ] ; then
+	echo "ERROR: dependency 'git' is not in PATH!"
+	exit 1
+fi

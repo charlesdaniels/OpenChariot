@@ -1,0 +1,40 @@
+#!/bin/sh
+
+# Make sure OpenChariot's directories exist, if not create them.
+
+$(ocutil-getconfig)
+if [ $OC_MAGIC -ne "OpenChariot" ] ; then
+	echo "PANIC: OC_MAGIC not defined, is ocutil-getconfig in PATH?"
+	exit 1
+fi
+
+if [ ! -d "$OC_GIT_DIR" ] ; then
+	mkdir -p "$OC_GIT_DIR"
+	chown "$OC_GIT_USER:$OC_GIT_GROUP" "$OC_GIT_DIR"
+fi
+
+if [ ! -d "$OC_GITSPOOL" ] ; then
+	mkdir -p "$OC_GITSPOOL"
+	chown "$OC_GIT_USER:$OC_GITSPOOL_GROUP" "$OC_GITSPOOL"
+fi
+
+if [ ! -e "$OC_WWW_ROOT" ] ; then
+	mkdir -p "$OC_WWW_ROOT"
+	chown "$OC_WWW_USER:$OC_WWW_GROUP" "$OC_WWW_ROOT"
+fi
+
+
+if [ ! -d "$OC_GIT_DIR" ] ; then
+	echo "ERROR: '$OC_GIT_DIR' does not exist, and could not create it!"
+	exit 1;
+fi
+
+if [ ! -d "$OC_GITSPOOL" ] ; then
+	echo "ERROR: '$OC_GITSPOOL' does not exist, and could not create it!"
+	exit 1;
+fi
+
+if [ ! -e "$OC_WWW_ROOT" ] ; then
+	echo "ERROR: '$OC_WWW_ROOT' does not exist, and could not create it!"
+	exit 1
+fi
