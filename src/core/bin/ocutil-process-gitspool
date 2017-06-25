@@ -13,11 +13,6 @@ if [ $OC_MAGIC -ne "OpenChariot" ] ; then
 	exit 1
 fi
 
-if [ ! -d "$OC_GITSPOOL" ] ; then
-	echo "$OC_GITSPOOL does not exist, creating it..."
-	mkdir -p "$OC_GITSPOOL"
-fi
-
 chown -R $OC_GIT_USER:$OC_GITSPOOL_GROUP "$OC_GITSPOOL"
 chmod -R $GITSPOOL_PERMS "$OC_GITSPOOL"
 
