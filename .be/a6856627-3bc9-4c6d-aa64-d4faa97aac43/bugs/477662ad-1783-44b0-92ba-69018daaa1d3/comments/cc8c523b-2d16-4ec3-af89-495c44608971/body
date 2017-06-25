@@ -1,0 +1,7 @@
+Rather than each individual utility script managing their own directories, a
+script should be added that sets up all OpenChariot directories correctly
+according to the configuration. This can then be added to the spooler to be run
+each time OpenChariot does, to ensure any required directories exist and have
+appropriate permissions.
+
+
