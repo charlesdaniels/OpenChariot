@@ -1,0 +1,5 @@
+It would be ideal if project READMEs done in restructuredtext could also be
+compiled to HTML, or otherwise rendered in a useful way, rather than as raw
+text. As git-arr already supports rendering Markdown (?) it might be
+constructive to add this functionality to git-arr and get it merged upstream.
+

@@ -1,0 +1,78 @@
+{
+
+
+
+
+
+
+    "creator": "Charles Daniels <cdaniels@fastmail.com>", 
+
+
+
+
+
+
+    "extra_strings": [
+
+
+
+
+
+
+        "TAG:feature", 
+
+
+
+
+
+
+        "TAG:ui"
+
+
+
+
+
+
+    ], 
+
+
+
+
+
+
+    "reporter": "Charles Daniels <cdaniels@fastmail.com>", 
+
+
+
+
+
+
+    "severity": "wishlist", 
+
+
+
+
+
+
+    "status": "open", 
+
+
+
+
+
+
+    "summary": "compile ReST READMEs to HTML", 
+
+
+
+
+
+
+    "time": "Tue, 27 Jun 2017 21:47:53 +0000"
+
+
+
+
+
+
+}
