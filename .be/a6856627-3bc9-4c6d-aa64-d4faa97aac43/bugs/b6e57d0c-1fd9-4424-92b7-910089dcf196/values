@@ -1,0 +1,50 @@
+{
+
+
+
+
+
+
+    "creator": "Charles Daniels <cdaniels@fastmail.com>", 
+
+
+
+
+
+
+    "reporter": "Charles Daniels <cdaniels@fastmail.com>", 
+
+
+
+
+
+
+    "severity": "minor", 
+
+
+
+
+
+
+    "status": "open", 
+
+
+
+
+
+
+    "summary": "generate-index creates a link to the bug tracker page even if it does not exist", 
+
+
+
+
+
+
+    "time": "Tue, 27 Jun 2017 21:29:54 +0000"
+
+
+
+
+
+
+}

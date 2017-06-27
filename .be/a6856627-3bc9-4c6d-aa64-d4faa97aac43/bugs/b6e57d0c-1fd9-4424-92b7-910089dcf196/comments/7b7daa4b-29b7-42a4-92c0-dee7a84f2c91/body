@@ -1,0 +1,4 @@
+This is probably caused by checking for directory existence, rather than
+existence of an index.html file. To reproduce, simply run ocutil-update-be when
+there is any repository which has no bugs.
+
