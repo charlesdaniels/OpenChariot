@@ -42,6 +42,15 @@ for project in "$OC_GIT_DIR"/*.git ; do
 	tree="git-arr/r/$name.git/b/master/t"
 	treefull="$OC_WWW_ROOT/$tree"
 
+	# link to git repo main page
+	projectpage="git-arr/r/$name.git"
+	projectpagefull="$OC_WWW_ROOT/$projectpage"
+	if [ -d "$projectpagefull" ] ; then
+		toidx "<li><a href=\"./$projectpage\">Project repository browser.</a></li>"
+	else
+		toidx "<li>Project repository browser is not yet generated.</li>"
+	fi
+
 	# link to README
 	readme="f=README.rst.html"
 	if [ ! -e "$treefull/$readme" ] ; then
