@@ -1,0 +1,10 @@
+Steps to reproduce:
+
+Create a new empty git repository (eg. via gitspool), run
+ocutil-update-gitstats, then ocutil-generate-index. A link to the statistics
+page will be generated, but will result in a 403 forbidden error, presumably
+because the index.html file does not exist. 
+
+This can likely be fixed by having generate-index check for the existance of
+index.html, rather than only the parent folder for the statistics page.
+

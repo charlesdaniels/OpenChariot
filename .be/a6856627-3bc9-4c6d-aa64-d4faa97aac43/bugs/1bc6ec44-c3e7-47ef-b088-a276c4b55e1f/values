@@ -1,0 +1,71 @@
+{
+
+
+
+
+
+
+    "creator": "Charles Daniels <cdaniels@fastmail.com>", 
+
+
+
+
+
+
+    "extra_strings": [
+
+
+
+
+
+
+        "TAG:bug"
+
+
+
+
+
+
+    ], 
+
+
+
+
+
+
+    "reporter": "Charles Daniels <cdaniels@fastmail.com>", 
+
+
+
+
+
+
+    "severity": "minor", 
+
+
+
+
+
+
+    "status": "open", 
+
+
+
+
+
+
+    "summary": "generate-index still creates a link to the statistics page even if it does not exist", 
+
+
+
+
+
+
+    "time": "Tue, 27 Jun 2017 21:24:54 +0000"
+
+
+
+
+
+
+}
