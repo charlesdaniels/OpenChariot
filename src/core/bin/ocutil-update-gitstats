@@ -17,6 +17,20 @@ export GDFONTPATH=/usr/share/fonts/liberation
 
 for repo in "$OC_GIT_DIR/"*.git ; do
 	name=$(basename "$repo" .git)
+
+	# validate that the repo is non-empty, which causes gitstats to hang
+	for head in "$repo/refs/heads"/* ; do
+		flag="OK"
+		if [ ! -e "$head" ] ; then
+			echo "WARNING: $name appears empty, ignoring it"
+			flag="FAIL"
+		fi
+	done
+	if [ $flag == "FAIL" ] ; then
+		echo "INFO: skipping $name because it was flagged as empty"
+		continue
+	fi
+
 	OUT_DIR="$HTML_OUT_DIR/$name"
 	mkdir -p "$OUT_DIR"
 	echo "Processing repo $name..."
