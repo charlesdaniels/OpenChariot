@@ -8,15 +8,15 @@
 # on OC_GITSPOOL.
 
 $(ocutil-getconfig)
-if [ $OC_MAGIC -ne "OpenChariot" ] ; then
+if [ $OC_MAGIC != "OpenChariot" ] ; then
 	echo "PANIC: OC_MAGIC not defined, is ocutil-getconfig in PATH?"
 	exit 1
 fi
 
 chown -R $OC_GIT_USER:$OC_GITSPOOL_GROUP "$OC_GITSPOOL"
-chmod -R $GITSPOOL_PERMS "$OC_GITSPOOL"
+chmod -R $OC_GITSPOOL_PERM "$OC_GITSPOOL"
 
-echo "Processing git spool..."
+echo "Processing git spool ($OC_GITSPOOL)..."
 for f in "$OC_GITSPOOL"/*.newgit ; do
 	if [ ! -e "$f" ] ; then
 		echo "spool appears to be empty, giving up"
@@ -29,10 +29,10 @@ for f in "$OC_GITSPOOL"/*.newgit ; do
 		rm "$f"
 		continue
 	fi
-	cd "$GIT_DIR"
-	sudo -u $GIT_USER mkdir "$name.git"
+	cd "$OC_GIT_DIR"
+	sudo -u $OC_GIT_USER mkdir "$name.git"
 	cd "$name.git"
-	sudo -u $GIT_USER git --bare init
+	sudo -u $OC_GIT_USER git --bare init
 	rm "$f"
 	echo "finished processing new repo $name"
 done

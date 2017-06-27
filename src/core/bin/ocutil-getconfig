@@ -13,6 +13,9 @@ echo 'export OC_MAGIC=OpenChariot'
 # git repositories by ocutil-process-gitspool.
 echo 'export OC_GITSPOOL=/var/openchariot/gitspool'
 
+# Desired permissions for the gitspool, this shoul dusually be 775.
+echo 'export OC_GITSPOOL_PERM=775'
+
 # The git user account, should almost always be 'git'.
 echo 'export OC_GIT_USER=git'
 
@@ -26,14 +29,19 @@ echo 'export OC_GIT_DIR=/git'
 echo 'export OC_GITSPOOL_GROUP=openchariot'
 
 # The directory on your HTTP server where OpenChariot should do it's thing.
-echo 'export OC_WWW_ROOT=/var/www'
+# This is usually some subdirectory of /usr/local/www/data on BSD, and
+# some subdirectory of /var/www on Linux.
+echo 'export OC_WWW_ROOT=/usr/local/www/data'
 
 # User account which should own OC_WWW_ROOT
-echo 'export OC_WWW_USER=lighttpd'
+echo 'export OC_WWW_USER=www'
 
 # Group which should own OC_WWW_ROOT
-echo 'export OC_WWW_GROUP=lighttpd'
+echo 'export OC_WWW_GROUP=www'
 
 # Desired permissions in octal for OC_WWW_ROOT
 echo 'export OC_WWW_PERM=755'
+
+# Desired log file location, used by ocutil-spooler
+echo 'export OC_LOGFILE=/var/log/openchariot.log'
 

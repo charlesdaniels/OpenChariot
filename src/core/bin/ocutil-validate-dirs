@@ -3,7 +3,7 @@
 # Make sure OpenChariot's directories exist, if not create them.
 
 $(ocutil-getconfig)
-if [ $OC_MAGIC -ne "OpenChariot" ] ; then
+if [ $OC_MAGIC != "OpenChariot" ] ; then
 	echo "PANIC: OC_MAGIC not defined, is ocutil-getconfig in PATH?"
 	exit 1
 fi

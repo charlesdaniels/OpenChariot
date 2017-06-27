@@ -1,0 +1,59 @@
+#!/bin/sh
+
+# Run this script periodically (i.e. via cron) and it will keep your static
+# pages up-to-date. Note that this script will panic if it is already running.
+
+ps aux | grep -v grep | grep -v $$ | grep $0 > /dev/null
+if [ $? -eq 0 ] ; then
+	echo "PANIC: ocutil-spooler is already running!"
+	exit 1
+fi
+
+$(ocutil-getconfig)
+if [ $OC_MAGIC != "OpenChariot" ] ; then
+	echo "PANIC: OC_MAGIC not defined, is ocutil-getconfig in PATH?"
+	exit 1
+fi
+
+echo "$0 started at $(date)" >> $OC_LOGFILE
+ocutil-validate-dep >> $OC_LOGFILE 2>&1
+if [ $? -ne 0 ] ; then
+	echo "PANIC: ocutil-validate-dep failed; consult $OC_LOGFILE"
+	exit 1
+fi
+ocutil-validate-dirs 2>&1 >> $OC_LOGFILE
+if [ $? -ne 0 ] ; then
+	echo "PANIC: ocutil-validate-dirs failed; consult $OC_LOGFILE"
+	exit 1
+fi
+ocutil-process-gitspool >> $OC_LOGFILE 2>&1
+if [ $? -ne 0 ] ; then
+	echo "PANIC: ocutil-process-gitspool failed; consult $OC_LOGFILE"
+	exit 1
+fi
+ocutil-update-be >> $OC_LOGFILE 2>&1
+if [ $? -ne 0 ] ; then
+	echo "PANIC: ocutil-update-be failed; consult $OC_LOGFILE"
+	exit 1
+fi
+ocutil-update-docs >> $OC_LOGFILE 2>&1
+if [ $? -ne 0 ] ; then
+	echo "PANIC: ocutil-update-docs failed; consult $OC_LOGFILE"
+	exit 1
+fi
+ocutil-update-gitstats >> $OC_LOGFILE 2>&1
+if [ $? -ne 0 ] ; then
+	echo "PANIC: ocutil-update-gitstats failed; consult $OC_LOGFILE"
+	exit 1
+fi
+ocutil-update-git-arr >> $OC_LOGFILE 2>&1
+if [ $? -ne 0 ] ; then
+	echo "PANIC: ocutil-update-git-arr failed; consult $OC_LOGFILE"
+	exit 1
+fi
+ocutil-update-www-perm >> $OC_LOGFILE 2>&1
+if [ $? -ne 0 ] ; then
+	echo "PANIC: ocutil-update-www-perm failed; consult $OC_LOGFILE"
+	exit 1
+fi
+echo "$0 stopped at $(date)" >> $OC_LOGFILE
