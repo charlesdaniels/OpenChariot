@@ -45,3 +45,6 @@ echo 'export OC_WWW_PERM=755'
 # Desired log file location, used by ocutil-spooler
 echo 'export OC_LOGFILE=/var/log/openchariot.log'
 
+# OpenChariot version, used in some logs and other output. You should not
+# change this.
+echo 'export OC_VERSION=0.0.1-git'

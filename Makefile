@@ -2,7 +2,7 @@ PREFIX=/usr/local
 
 # Note: PREFIX/bin must be in PATH!
 
-install: getconfig process-gitspool update-be update-docs update-gitstats update-www-perm validate-dep validate-dirs gitarrconf update-git-arr spooler
+install: getconfig process-gitspool update-be update-docs update-gitstats update-www-perm validate-dep validate-dirs gitarrconf update-git-arr spooler generate-index
 	ocutil-validate-dep
 	ocutil-validate-dirs
 
@@ -49,6 +49,9 @@ spooler: src/core/bin/ocutil-spooler
 	cp "$<" "$(PREFIX)/bin"
 
 update-git-arr: src/core/bin/ocutil-update-git-arr
+	cp "$<" "$(PREFIX)/bin"
+
+generate-index: src/core/bin/ocutil-generate-index
 	cp "$<" "$(PREFIX)/bin"
 
 confdir:

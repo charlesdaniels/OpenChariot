@@ -56,4 +56,10 @@ if [ $? -ne 0 ] ; then
 	echo "PANIC: ocutil-update-www-perm failed; consult $OC_LOGFILE"
 	exit 1
 fi
+
+ocutil-generate-index >> $OC_LOGFILE 2>&1
+if [ $? -ne 0 ] ; then
+	echo "PANIC: ocutil-generate-index failed; consult $OC_LOGFILE"
+	exit 1
+fi
 echo "$0 stopped at $(date)" >> $OC_LOGFILE

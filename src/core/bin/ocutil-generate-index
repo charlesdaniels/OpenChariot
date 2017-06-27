@@ -1,0 +1,97 @@
+#!/bin/sh
+
+# Generate an index with information about each project.
+
+echo "Begin $0 at $(date)"
+
+$(ocutil-getconfig)
+if [ $OC_MAGIC != "OpenChariot" ] ; then
+	echo "PANIC: OC_MAGIC not defined, is ocutil-getconfig in PATH?"
+	echo "End $0 at $(date)"
+	exit 1
+fi
+
+INDEX="$OC_WWW_ROOT/index.html"
+
+toidx () {
+	echo "$@" >> "$INDEX.new"
+}
+
+toidx '<!DOCTYPE html>'
+toidx '<html>'
+toidx '<h1>OpenChariot Project Index</h1>'
+toidx '<p>Listing of projects hosted by this OpenChariot server...</p>'
+
+for project in "$OC_GIT_DIR"/*.git ; do
+	name=`basename $project .git`
+	echo "Processing project: $name"
+
+	# header
+	toidx "<h2>$name</h2>"
+
+	# project description from .git/description
+	desc=`cat $project/description`
+	toidx "<h3>Project Description</h3>"
+	toidx "<p>$desc</p>"
+
+	# start list of links
+	toidx "<h3>Useful Links</h3>"
+	toidx "<ul>"
+
+	# root of master branch tree browser
+	tree="git-arr/r/$name.git/b/master/t"
+	treefull="$OC_WWW_ROOT/$tree"
+
+	# link to README
+	readme="f=README.rst.html"
+	if [ ! -e "$treefull/$readme" ] ; then
+		readme="f=README.md.html"
+	fi
+	if [ ! -e "$treefull/$readme" ] ; then
+		toidx '<li>This project has no README!</li>'
+	else
+		toidx "<li><a href=\"./$tree/$readme\">Project README.</a></li>"
+	fi
+
+	# link to bug tracker
+	bugs="BugsEverywhere/$name"
+	bugsfull="$OC_WWW_ROOT/$bugs"
+	if [ -d "$bugsfull" ] ; then
+		toidx "<li><a href=\"./$bugs\">Project Bug Tracker.</a></li>"
+	else
+		toidx "<li>This project's bug tracker is not initialized.</li>"
+	fi
+
+	# link to stats
+	stats="gitstats/$name"
+	statsfull="$OC_WWW_ROOT/$stats"
+	if [ -d "$statsfull" ] ; then
+		toidx "<li><a href=\"./$stats\">Project Statistics.</a></li>"
+	else
+		toidx "<li>This project's statistics page is not generated yet.</li>"
+	fi
+
+	# link to docs
+	docs="docs/$name"
+	docsfull="$OC_WWW_ROOT/$docs"
+	if [ -d "$docsfull" ] ; then
+		toidx "<li><a href=\"./$docss\">Project Documentation.</a></li>"
+	else
+		toidx "<li>This project has no documentation yet.</li>"
+	fi
+
+	# end the list
+	toidx '</ul>'
+
+	echo "Finished processing $name."
+done
+
+toidx '<footer>'
+toidx '<HR>'
+toidx "<p>Page generated at $(date) by OpenChariot version $OC_VERSION</p>"
+toidx '</footer>'
+toidx '<html>'
+
+
+mv "$INDEX.new" "$INDEX"
+echo "End $0 at $(date)"

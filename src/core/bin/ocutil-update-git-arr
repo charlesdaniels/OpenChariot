@@ -10,4 +10,4 @@ fi
 
 CONFIG_FILE=$OC_PREFIX/etc/openchariot/git-arr.conf
 
-git-arr --config "$CONFIG_FILE" generate --output "$OC_WWW_ROOT"
+git-arr --config "$CONFIG_FILE" generate --output "$OC_WWW_ROOT/git-arr"
