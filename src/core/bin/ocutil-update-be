@@ -32,8 +32,8 @@ for repo in "$OC_GIT_DIR/"*.git ; do
 	mkdir -p "$OUT_DIR"
 	START_DIR="$(pwd)"
 	echo "Processing repo $name..."
-	git clone "$repo" "$TEMP_DIR/$name"
-	cd "$TEMP_DIR/$name"
+	git clone "$repo" "$TMP_DIR/$name"
+	cd "$TMP_DIR/$name"
 	be html --export-html --output="$OUT_DIR"
 	cd "$START_DIR"
 done
