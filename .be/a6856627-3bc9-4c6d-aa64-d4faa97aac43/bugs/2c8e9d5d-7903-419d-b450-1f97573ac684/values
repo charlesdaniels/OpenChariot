@@ -19,7 +19,14 @@
 
 
 
-        "TAG:bug"
+        "TAG:feature", 
+
+
+
+
+
+
+        "TAG:ui"
 
 
 
@@ -40,7 +47,7 @@
 
 
 
-    "severity": "minor", 
+    "severity": "target", 
 
 
 
@@ -54,14 +61,14 @@
 
 
 
-    "summary": "generate-index creates a link to the bug tracker page even if it does not exist", 
+    "summary": "consistant UI look and feel", 
 
 
 
 
 
 
-    "time": "Tue, 27 Jun 2017 21:29:54 +0000"
+    "time": "Tue, 27 Jun 2017 21:32:06 +0000"
 
 
 
