@@ -81,6 +81,19 @@ to ``git-shell``::
         chmod 600 ~git/.ssh/authorized_keys
         chown -R git:git ~git
 
+
+Optionally, you may enable a git protocol server, to allow the general public
+to clone your repository. Add the following lines to ``/etc/rc.conf``. Note
+that this assume your git repositories are stored in ``/git``::
+
+        git_daemon_enable="YES"
+        git_daemon_directory="/git"
+        git_daemon_flags="--syslog --base-path=/git --export-all --detach"
+
+Then you can start the git daemon via::
+
+        service git_daemon start
+
 You should now modify the file ``src/core/bin/ocutil-getconfig`` to set your
 configuration appropriately. The installer will create all directories
 mentioned therein, so it is important that you modify it before installation if
