@@ -1,0 +1,34 @@
+0.0.1:
+
+	2017-06-24 - Charles Daniels:
+
+		* Create OpenChariot project.
+		* Ported over scripts from previous "CLS" project.
+			* ocutil-update-be
+			* ocutil-update-docs
+			* ocutil-update-gitstats
+			* ocutil-update-www-perm
+			* ocutil-process-gitspool
+		* Implemented ocutil-getconfig
+
+	2017-06-25 - Charles Daniels:
+
+		* Migrated above scripts to get configuration from
+		  ocutil-getconfig
+		* Add ocutil-validate-dep
+		* Add ocutil-validate-dirs
+		* ocutil-process-gitspool no longer tries to creae the spool
+		  directory, since ocutil-validate-dirs does this.
+
+	2017-06-27 - Charles Daniels:
+
+		* All core functionality is implemented
+		* Implemented ocutil-generate-index
+		* Fixed a bug where ocutil-update-be would write to /
+		* Fixed a bug where ocutil-update-gitstats would cause
+		  ocutil-spooler to hang if there were any empty repositories
+		  in OC_GIT_DIR
+		* Wrote installer Makefile
+		* Added ocutil-spooler
+
+0.0.2:
