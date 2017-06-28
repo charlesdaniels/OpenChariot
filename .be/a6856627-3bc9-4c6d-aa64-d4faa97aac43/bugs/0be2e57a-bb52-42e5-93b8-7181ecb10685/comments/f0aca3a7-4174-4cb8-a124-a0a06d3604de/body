@@ -1,0 +1,15 @@
+ocutil-spooler should use the & operator to span jobs in the background, then
+use the jobs command to poll them for completion. Some thought will need to go
+into how we test them for failure also. This may also require better logging
+hygiene, as the log messages may wind up all jumbled together. This could
+potentially increase performance a lot for multi-core systems, as for large
+projects both gitstats and git-arr can be potentially be both long-running and
+single threaded.
+
+To take it a step further, it might be useful to apply the same treatment to
+any ocutil commands that operate on multiple repos, like
+ocutil-update-gitstats; each repo could be processed in parallel. It might be
+useful to pull in GNU parallel to this end, so we avoid totally killing
+systems with weak or single core CPUs.
+
+

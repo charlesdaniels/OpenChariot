@@ -1,0 +1,78 @@
+{
+
+
+
+
+
+
+    "creator": "Charles Daniels <cdaniels@fastmail.com>", 
+
+
+
+
+
+
+    "extra_strings": [
+
+
+
+
+
+
+        "TAG:feature", 
+
+
+
+
+
+
+        "TAG:performance"
+
+
+
+
+
+
+    ], 
+
+
+
+
+
+
+    "reporter": "Charles Daniels <cdaniels@fastmail.com>", 
+
+
+
+
+
+
+    "severity": "wishlist", 
+
+
+
+
+
+
+    "status": "open", 
+
+
+
+
+
+
+    "summary": "make ocutil-spooler use background jobs", 
+
+
+
+
+
+
+    "time": "Wed, 28 Jun 2017 02:10:00 +0000"
+
+
+
+
+
+
+}
