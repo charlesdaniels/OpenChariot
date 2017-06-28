@@ -1,0 +1,5 @@
+ocutil-spooler should generate a status page indicating if the most recent run
+encountered any failure or not. Maybe have a simple one for easy of querying
+which just says "OK" or "FAULT", and a human readable one with more detail.
+
+
