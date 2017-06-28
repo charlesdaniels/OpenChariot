@@ -1,0 +1,4 @@
+Currently, project remote URLs are not configured for git-arr, and hence not
+shown. This should be fixed, as the URLs used for access via ssh and git://
+will not be the same, or even similar to the URL to repo browser.
+

@@ -1,0 +1,8 @@
+At present, the git-arr configuration is overwritten each time "make install"
+is executed. This makes the upgrade path for installing updates versions of
+OpenChariot uncomfortable if any changes have been made to the default.
+
+To this end, we should probably either generate and manage the git-arr config
+internally, and not let the user modify it, or just tell the user how to
+configure it and provide a template. I am tending to lean towards the former.
+
