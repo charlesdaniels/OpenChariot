@@ -47,4 +47,12 @@ echo 'export OC_LOGFILE=/var/log/openchariot.log'
 
 # OpenChariot version, used in some logs and other output. You should not
 # change this.
-echo 'export OC_VERSION=0.0.1-git'
+echo 'export OC_VERSION=0.0.2-git'
+
+# If "YES", OpenChariot will setup your git repositories for "dumb" HTTP clones
+echo 'export OC_GIT_DUMB_HTTP=YES'
+
+# Path relative to OC_WWW_ROOT where dumb HTTP repositories should live. You
+# should make this directory browse-able in your webserver.
+echo 'export OC_GIT_DUMB_HTTP_DIR=/git'
+

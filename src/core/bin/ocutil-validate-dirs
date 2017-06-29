@@ -23,15 +23,26 @@ if [ ! -e "$OC_WWW_ROOT" ] ; then
 	chown "$OC_WWW_USER:$OC_WWW_GROUP" "$OC_WWW_ROOT"
 fi
 
+if [ "$OC_GIT_DUMB_HTTP" == "YES" ] ; then
+	if [ ! -e "$OC_GIT_DUMB_HTTP_DIR" ] ; then
+		mkdir -p "$OC_GIT_DUMB_HTTP_DIR"
+		chown "$OC_WWW_USER:$OC_WWW_GROUP" "$OC_GIT_DUMB_HTTP_DIR"
+	fi
+
+	if [ ! -e "$OC_GIT_DUMB_HTTP_DIR" ] ; then
+		echo "ERROR: '$OC_GIT_DUMB_HTTP_DIR' does not exist and could not create it!"
+		exit 1
+	fi
+fi
 
 if [ ! -d "$OC_GIT_DIR" ] ; then
 	echo "ERROR: '$OC_GIT_DIR' does not exist, and could not create it!"
-	exit 1;
+	exit 1
 fi
 
 if [ ! -d "$OC_GITSPOOL" ] ; then
 	echo "ERROR: '$OC_GITSPOOL' does not exist, and could not create it!"
-	exit 1;
+	exit 1
 fi
 
 if [ ! -e "$OC_WWW_ROOT" ] ; then

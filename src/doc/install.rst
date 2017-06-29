@@ -94,6 +94,18 @@ Then you can start the git daemon via::
 
         service git_daemon start
 
+Optionally, you may want to enable anonymous http clones of your repos. You
+should create a directory on your webserver. For this example, we will assume
+your git repositories will be hosted at
+``http://example.com/git/reponame.git``.  You should be sure to enable
+anonymous directory browsing of ``/git/*`` on your webserver. Make sure that
+``ocutil-getconfig`` specified ``OC_GIT_DUMB_HTTP='YES'`` and
+``OC_GIT_DUMB_HTTP_DIR=/git`` (or wherever on your webserver you want your
+repos to appear); note that as of 0.0.2, these values are the defaults. . Once
+this is done, ``ocutil-spooler`` will automatically update all of your repos so
+they can be cloned over http. The primary use case for this feature is for
+those behind cooperate firewalls who cannot use ``git://`` for clones.
+
 You should now modify the file ``src/core/bin/ocutil-getconfig`` to set your
 configuration appropriately. The installer will create all directories
 mentioned therein, so it is important that you modify it before installation if

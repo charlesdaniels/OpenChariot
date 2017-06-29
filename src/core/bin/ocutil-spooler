@@ -57,6 +57,11 @@ if [ $? -ne 0 ] ; then
 	exit 1
 fi
 
+ocutil-update-dumb-http >> $OC_LOGFILE 2>&1
+if [ $? -ne 0 ] ; then
+	echo "PANIC: ocutil-update-dumb-http failed; consult $OC_LOGFILE"
+	exit 1
+fi
 ocutil-generate-index >> $OC_LOGFILE 2>&1
 if [ $? -ne 0 ] ; then
 	echo "PANIC: ocutil-generate-index failed; consult $OC_LOGFILE"

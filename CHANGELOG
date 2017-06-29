@@ -32,3 +32,9 @@
 		* Added ocutil-spooler
 
 0.0.2:
+
+	2017-06-28 - Charles Daniels:
+
+		* OpenChariot now supports the git "dumb" http anonymous
+		  git protocol for clones (but not pushes)
+		* Implemented ocutil-update-dumb-http

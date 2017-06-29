@@ -1,0 +1,47 @@
+#!/bin/sh
+
+# Update dumb HTTP repositories on the server.
+
+$(ocutil-getconfig)
+if [ $OC_MAGIC != "OpenChariot" ] ; then
+	echo "PANIC: OC_MAGIC not defined, is ocutil-getconfig in PATH?"
+	exit 1
+fi
+
+echo "Updating dumb HTTP repos starting at $(date)"
+
+if [ $OC_GIT_DUMB_HTTP != "YES" ] ; then
+	echo "Git dumb HTTP repo update are disabled, aborting."
+	exit 0
+fi
+
+for repo in "$OC_GIT_DIR"/*.git ; do
+	if [ ! -e "$repo" ] ; then
+		echo "PANIC: $repo does not exist!"
+		exit 1
+	fi
+
+	echo "Processing repo: $repo... "
+	name=$(basename $repo .git)
+	dest="$OC_WWW_ROOT/$OC_GIT_DUMB_HTTP_DIR/$name.git"
+	echo "Destination is: $dest"
+	
+	if [ ! -e "$dest" ] ; then
+		echo "INFO: $dest does not exist, creating it..."
+		mkdir -p "$dest"
+	fi
+
+	rsync -rzu --delete "$repo/" "$dest"
+	start=$(pwd)
+	cd $dest
+	git update-server-info
+	if [ $? -ne 0 ] ; then
+		echo "PANIC: git update-server info failed"
+		exit 1
+	fi
+	cd "$start"
+
+	echo "Finished updating $name"
+done
+
+echo "Finished updating dumb HTTP repos at $(date)"

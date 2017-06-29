@@ -2,7 +2,7 @@ PREFIX=/usr/local
 
 # Note: PREFIX/bin must be in PATH!
 
-install: getconfig process-gitspool update-be update-docs update-gitstats update-www-perm validate-dep validate-dirs gitarrconf update-git-arr spooler generate-index
+install: getconfig process-gitspool update-be update-docs update-gitstats update-www-perm validate-dep validate-dirs gitarrconf update-git-arr spooler generate-index update-dumb-http
 	ocutil-validate-dep
 	ocutil-validate-dirs
 
@@ -54,10 +54,15 @@ update-git-arr: src/core/bin/ocutil-update-git-arr
 generate-index: src/core/bin/ocutil-generate-index
 	cp "$<" "$(PREFIX)/bin"
 
+update-dumb-http: src/core/bin/ocutil-update-dumb-http
+	cp "$<" "$(PREFIX)/bin"
+
 confdir:
 	mkdir -p "$(PREFIX)/etc/openchariot"
 
 gitarrconf: src/etc/git-arr.conf confdir
 	cp "$<" "$(PREFIX)/etc/openchariot/"
+	# insert git directory from config
 	$$(src/core/bin/ocutil-getconfig) && echo "path = $$OC_GIT_DIR/." >> "$(PREFIX)/etc/openchariot/git-arr.conf"
+
 
