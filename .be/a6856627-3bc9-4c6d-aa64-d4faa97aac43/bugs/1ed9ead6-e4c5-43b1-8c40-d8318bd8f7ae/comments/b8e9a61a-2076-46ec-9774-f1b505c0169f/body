@@ -1,0 +1,5 @@
+I am under the impression that git can be configured to run `git
+update-server-info` every time a commit is pushed to the repo. This would a
+cleaner solution that the current one, which creates a copy of each repo, then
+cds into it and runs the appropriate command.
+

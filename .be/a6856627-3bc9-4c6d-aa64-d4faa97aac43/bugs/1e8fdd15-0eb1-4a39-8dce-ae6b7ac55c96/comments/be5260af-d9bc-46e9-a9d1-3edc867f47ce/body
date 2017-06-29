@@ -1,0 +1,5 @@
+The new git dumb HTTP protocol-related facilities result in repos being cloned
+successfully, but with their push URL set to the http one, which naturally does
+not work. There is probably a way to make git set it to the SSH URL.
+
+

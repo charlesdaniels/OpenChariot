@@ -1,0 +1,71 @@
+{
+
+
+
+
+
+
+    "creator": "Charles Daniels <cdaniels@fastmail.com>", 
+
+
+
+
+
+
+    "extra_strings": [
+
+
+
+
+
+
+        "TAG:git"
+
+
+
+
+
+
+    ], 
+
+
+
+
+
+
+    "reporter": "Charles Daniels <cdaniels@fastmail.com>", 
+
+
+
+
+
+
+    "severity": "minor", 
+
+
+
+
+
+
+    "status": "open", 
+
+
+
+
+
+
+    "summary": "ocutil-update-dumb-http can probably be replaced by a git hook", 
+
+
+
+
+
+
+    "time": "Thu, 29 Jun 2017 01:52:31 +0000"
+
+
+
+
+
+
+}

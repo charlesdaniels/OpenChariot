@@ -1,0 +1,78 @@
+{
+
+
+
+
+
+
+    "creator": "Charles Daniels <cdaniels@fastmail.com>", 
+
+
+
+
+
+
+    "extra_strings": [
+
+
+
+
+
+
+        "TAG:bug", 
+
+
+
+
+
+
+        "TAG:git"
+
+
+
+
+
+
+    ], 
+
+
+
+
+
+
+    "reporter": "Charles Daniels <cdaniels@fastmail.com>", 
+
+
+
+
+
+
+    "severity": "minor", 
+
+
+
+
+
+
+    "status": "open", 
+
+
+
+
+
+
+    "summary": "Dumb http clone do not have push URL configured correctly", 
+
+
+
+
+
+
+    "time": "Thu, 29 Jun 2017 01:50:28 +0000"
+
+
+
+
+
+
+}
