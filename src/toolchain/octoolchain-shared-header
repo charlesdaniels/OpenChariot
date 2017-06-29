@@ -1,0 +1,37 @@
+#!/bin/sh
+
+#### begin octoolchain-shared-header ####
+
+# This header is shared across all ocutil sh scripts. All it does is search for
+# and load the appropriate configuration file.
+
+# the following paths are searched, in order of priority:
+#
+
+OC_CFG_SEARCH_PATHS=\
+/etc/openchariot/openchariot.cfg \
+/usr/local/etc/openchariot/openchariot.cfg \
+./openchariot.cfg
+
+OC_FOUND_CFG="NO"
+
+for p in $OC_CFG_SEARCH_PATHS ; do
+	if [ -e "$p" ] ; then
+		. "$p"
+		OC_FOUND_CFG="YES"
+		break
+	fi
+done
+
+if [ "$OC_FOUND_CFG" != "YES" ] ; then
+	echo "PANIC: failed to find openchariot config at any of: $OC_CFG_SEARCH_PATHS"
+	exit 1
+fi
+
+if [ "$OC_MAGIC" != "OpenChariot" ] ; then
+	echo "PANIC: config was found, but OC_MAGIC was incorrect"
+	exit 1
+fi
+
+
+

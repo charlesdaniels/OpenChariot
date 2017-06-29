@@ -1,0 +1,22 @@
+#!/bin/sh
+
+# Inject the shared header in the same directory as this file into the file at
+# $1.
+
+TMP_FILE=/tmp/$(date | md5)
+HEADER="$(dirname $0)/octoolchain-shared-header"
+VERSION=`cat "$(dirname $0)/../../VERSION"`
+
+if [ ! -e "$1" ] ; then
+	echo "PANIC: $1 does not exist!"
+	exit 1
+fi
+
+cat "$HEADER" > "$TMP_FILE"
+echo "OC_VERSION=$VERSION" >> "$TMP_FILE"
+echo "#### end octoolchain-shared-header ####" >> "$TMP_FILE"
+echo "" >> "$TMP_FILE"
+cat "$1" >> "$TMP_FILE"
+
+mv "$TMP_FILE" "$1"
+

@@ -16,3 +16,13 @@ if [ ! -e `which git` ] ; then
 	echo "ERROR: dependency 'git' is not in PATH!"
 	exit 1
 fi
+
+if [ ! -e `which dirname` ] ; then
+	echo "ERROR: dependency 'dirname' is not in PATH!"
+	exit 1
+fi
+
+if [ ! -e `which basename` ] ; then
+	echo "ERROR: dependency 'basename' is not in PATH!"
+	exit 1
+fi
