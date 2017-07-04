@@ -1,0 +1,19 @@
+Considerable work has gone towards this issue in the patch
+
+493b80fe6f61fac7c2ffdf2b2c2038e5eccb0a97
+
+As of this patch, all components use unified CSS theme, with the exception of
+git-arr, to which I have added appropriate boilerplate, but disabled it for
+now since the OC CSS theme clashes significantly with the git-arr UI.
+
+Of further note, the documentation builder does not do anything special with
+CSS - to that end documentation will use whatever CSS theme the pertinent build
+script uses. I do not propose that we try to force our own CSS into
+documentation built in this way, but propose that it might be useful to provide
+themes for Sphinx, and possible other documentation builders, so that
+OpenChariot users can have a consistent look and feel throughout their sites.
+
+Note that the shard CSS theme now lives in src/web/openchariot.css, and further
+that adding additional, component-specific CSS themes would be exceedingly
+easy, as CSS injection is handled by each individual component update script.
+
