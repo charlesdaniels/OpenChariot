@@ -2,12 +2,6 @@
 
 # update your gitstats static HTML pages.
 
-$(ocutil-getconfig)
-if [ $OC_MAGIC != "OpenChariot" ] ; then
-	echo "PANIC: OC_MAGIC not defined, is ocutil-getconfig in PATH?"
-	exit 1
-fi
-
 HTML_OUT_DIR="$OC_WWW_ROOT/gitstats"
 
 PATH=$PATH:/opt/cls/bin

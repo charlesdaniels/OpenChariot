@@ -4,13 +4,6 @@
 
 echo "Begin $0 at $(date)"
 
-$(ocutil-getconfig)
-if [ $OC_MAGIC != "OpenChariot" ] ; then
-	echo "PANIC: OC_MAGIC not defined, is ocutil-getconfig in PATH?"
-	echo "End $0 at $(date)"
-	exit 1
-fi
-
 INDEX="$OC_WWW_ROOT/index.html"
 
 toidx () {

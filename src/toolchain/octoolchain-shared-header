@@ -8,10 +8,7 @@
 # the following paths are searched, in order of priority:
 #
 
-OC_CFG_SEARCH_PATHS=\
-/etc/openchariot/openchariot.cfg \
-/usr/local/etc/openchariot/openchariot.cfg \
-./openchariot.cfg
+OC_CFG_SEARCH_PATHS="/etc/openchariot/openchariot.cfg /usr/local/etc/openchariot/openchariot.cfg ./openchariot.cfg"
 
 OC_FOUND_CFG="NO"
 
@@ -33,5 +30,4 @@ if [ "$OC_MAGIC" != "OpenChariot" ] ; then
 	exit 1
 fi
 
-
-
+# Note that OC_VERSION is injected below this line during build.

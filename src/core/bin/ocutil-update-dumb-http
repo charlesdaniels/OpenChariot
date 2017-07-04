@@ -2,12 +2,6 @@
 
 # Update dumb HTTP repositories on the server.
 
-$(ocutil-getconfig)
-if [ $OC_MAGIC != "OpenChariot" ] ; then
-	echo "PANIC: OC_MAGIC not defined, is ocutil-getconfig in PATH?"
-	exit 1
-fi
-
 echo "Updating dumb HTTP repos starting at $(date)"
 
 if [ $OC_GIT_DUMB_HTTP != "YES" ] ; then

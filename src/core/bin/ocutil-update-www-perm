@@ -3,11 +3,5 @@
 # Some other automated scripts may wind up placing files not owned by the
 # correct user account in OC_WWW_ROOT.
 
-$(ocutil-getconfig)
-if [ $OC_MAGIC != "OpenChariot" ] ; then
-	echo "PANIC: OC_MAGIC not defined, is ocutil-getconfig in PATH?"
-	exit 1
-fi
-
 chown -R "$OC_WWW_USER":"$OC_WWW_GROUP" "$OC_WWW_ROOT"
 chmod -R "$OC_WWW_PERM" "$OC_WWW_ROOT"

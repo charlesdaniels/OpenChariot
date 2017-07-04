@@ -2,27 +2,37 @@
 
 # Validate that required dependencies are in $PATH
 
-if [ ! -e `which be` ] ; then
+if [ ! -e "`which be`" ] ; then
 	echo "ERROR: dependency 'be' is not in PATH!"
 	exit 1
 fi
 
-if [ ! -e `which gitstats` ] ; then
+if [ ! -e "`which gitstats`" ] ; then
 	echo "ERROR: dependency 'gitstats' is not in PATH!"
 	exit 1
 fi
 
-if [ ! -e `which git` ] ; then
+if [ ! -e "`which git-arr`" ] ; then
+	echo "ERROR: dependency 'git-arr' is not in PATH!"
+	exit 1
+fi
+
+if [ ! -e "`which git`" ] ; then
 	echo "ERROR: dependency 'git' is not in PATH!"
 	exit 1
 fi
 
-if [ ! -e `which dirname` ] ; then
+if [ ! -e "`which dirname`" ] ; then
 	echo "ERROR: dependency 'dirname' is not in PATH!"
 	exit 1
 fi
 
-if [ ! -e `which basename` ] ; then
+if [ ! -e "`which basename`" ] ; then
 	echo "ERROR: dependency 'basename' is not in PATH!"
+	exit 1
+fi
+
+if [ ! -e "`which rsync`" ] ; then
+	echo "ERROR: dependency 'rsync' is not in PATH!"
 	exit 1
 fi

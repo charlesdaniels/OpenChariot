@@ -2,12 +2,6 @@
 
 # update your BugsEverywhere static HTML pages.
 
-$(ocutil-getconfig)
-if [ $OC_MAGIC != "OpenChariot" ] ; then
-	echo "PANIC: OC_MAGIC not defined, is ocutil-getconfig in PATH?"
-	exit 1
-fi
-
 # dir where git repos live
 HTML_OUT_DIR="$OC_WWW_ROOT/BugsEverywhere"
 TMP_DIR=/tmp/be-update

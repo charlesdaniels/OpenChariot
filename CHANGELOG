@@ -38,3 +38,8 @@
 		* OpenChariot now supports the git "dumb" http anonymous
 		  git protocol for clones (but not pushes)
 		* Implemented ocutil-update-dumb-http
+
+	2017-07-03 - Charles Daniels:
+
+		* Implemented installer script (install.pl)
+

@@ -7,12 +7,6 @@
 # file will be deleted silently. This script will handle managing permissions
 # on OC_GITSPOOL.
 
-$(ocutil-getconfig)
-if [ $OC_MAGIC != "OpenChariot" ] ; then
-	echo "PANIC: OC_MAGIC not defined, is ocutil-getconfig in PATH?"
-	exit 1
-fi
-
 chown -R $OC_GIT_USER:$OC_GITSPOOL_GROUP "$OC_GITSPOOL"
 chmod -R $OC_GITSPOOL_PERM "$OC_GITSPOOL"
 
