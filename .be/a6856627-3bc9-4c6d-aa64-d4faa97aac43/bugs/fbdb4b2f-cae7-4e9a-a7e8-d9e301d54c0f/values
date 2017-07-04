@@ -1,0 +1,78 @@
+{
+
+
+
+
+
+
+    "creator": "Charles Daniels <cdaniels@fastmail.com>", 
+
+
+
+
+
+
+    "extra_strings": [
+
+
+
+
+
+
+        "TAG:feature", 
+
+
+
+
+
+
+        "TAG:git"
+
+
+
+
+
+
+    ], 
+
+
+
+
+
+
+    "reporter": "Charles Daniels <cdaniels@fastmail.com>", 
+
+
+
+
+
+
+    "severity": "minor", 
+
+
+
+
+
+
+    "status": "open", 
+
+
+
+
+
+
+    "summary": "git mirror feature", 
+
+
+
+
+
+
+    "time": "Tue, 04 Jul 2017 01:44:38 +0000"
+
+
+
+
+
+
+}

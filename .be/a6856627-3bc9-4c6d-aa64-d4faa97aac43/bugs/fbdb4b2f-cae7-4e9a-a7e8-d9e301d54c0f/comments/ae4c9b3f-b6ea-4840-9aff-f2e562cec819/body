@@ -1,0 +1,10 @@
+A feature should be added where a list of repositories can be provided in
+a configuration file, and OpenChariot will produce a read-only mirror of these
+repositories. A link should be added to the project index pointing to the
+mirror list, which should be formatted similarly, but with a different
+title indicating that it is a set of read-only mirrors.
+
+The generation scripts need to be modified operate correctly on arbitrary
+prefixes, so that the mirrored projects can be output in an alternate directory
+from normal projects.
+
