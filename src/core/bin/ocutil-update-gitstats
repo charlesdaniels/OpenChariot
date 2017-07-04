@@ -29,6 +29,9 @@ for repo in "$OC_GIT_DIR/"*.git ; do
 	mkdir -p "$OUT_DIR"
 	echo "Processing repo $name..."
 	gitstats "$repo" "$OUT_DIR"
+
+	# copy CSS
+	cp "$OC_CSS_FILE" "$OUT_DIR/gitstats.css"
 done
 
 echo "gitstats update complete"

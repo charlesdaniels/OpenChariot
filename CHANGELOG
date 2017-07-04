@@ -43,3 +43,19 @@
 
 		* Implemented installer script (install.pl)
 
+	2017-07-03 - Matt Coley:
+
+		* Added OpenChariot shared CSS theme
+
+	2017-07-04 - Charles Daniels:
+
+		* Installer and uninstaller now create
+		  OC_PREFIX/lib/openchariot, and place the CSS theme therein.
+		* ocutil-generate-index now uses the shared CSS theme.
+		* ocutil-update-gitstats now uses the shared CSS theme.
+		* Add boilerplate to ocutil-update-git-arr to use shared
+		  CSS theme, but it's commented out for the time being, since
+		  the OC CSS breaks the git-arr UI.
+		* ocutil-update-be now uses the share CSS theme.
+
+

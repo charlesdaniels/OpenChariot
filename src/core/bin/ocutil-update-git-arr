@@ -1,7 +1,9 @@
-#!/bin/sh
-
-# update git-arr output 
+# update git-arr output
 
 CONFIG_FILE=$OC_PREFIX/etc/openchariot/git-arr.conf
 
 git-arr --config "$CONFIG_FILE" generate --output "$OC_WWW_ROOT/git-arr"
+
+# copy CSS them
+# disabled for now, since the shared CSS breaks git-arr right now
+# cp "$OC_CSS_FILE" "$OC_WWW_ROOT/git-arr/static/git-arr.css"

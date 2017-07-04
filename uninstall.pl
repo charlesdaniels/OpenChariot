@@ -78,5 +78,17 @@ foreach my $binary (@binaries) {
 }
 printf("INFO: finished uninstalling binaries\n");
 
+printf("INFO: uninstalling OpenChariot libraries... ");
+my $OC_LIB_DIR = File::Spec->catdir($OC_PREFIX, "lib", "openchariot");
+my $OC_LIB_WEB_DIR = File::Spec->catdir($OC_LIB_DIR, "web");
+
+my @weblibs = <$OC_LIB_WEB_DIR/*>;
+foreach my $weblib (@weblibs) {
+	unlink($weblib);
+}
+rmdir($OC_LIB_WEB_DIR);
+rmdir($OC_LIB_DIR);
+printf("DONE\n");
+
 printf("INFO: your configurations in '$OC_ETC_DIR' have not been deleted\n");
 printf ("INFO: OpenChariot uninstallation is complete\n");

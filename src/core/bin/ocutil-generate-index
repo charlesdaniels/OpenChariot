@@ -1,5 +1,3 @@
-#!/bin/sh
-
 # Generate an index with information about each project.
 
 echo "Begin $0 at $(date)"
@@ -12,6 +10,7 @@ toidx () {
 
 toidx '<!DOCTYPE html>'
 toidx '<html>'
+toidx '<link rel="stylesheet" href="./openchariot.css">'
 toidx '<h1>OpenChariot Project Index</h1>'
 toidx '<p>Listing of projects hosted by this OpenChariot server...</p>'
 
@@ -94,6 +93,8 @@ toidx "<p>Page generated at $(date) by OpenChariot version $OC_VERSION</p>"
 toidx '</footer>'
 toidx '<html>'
 
+# copy over CSS
+cp "$OC_CSS_FILE" "$OC_WWW_ROOT"
 
 mv "$INDEX.new" "$INDEX"
 echo "End $0 at $(date)"

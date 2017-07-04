@@ -1,5 +1,3 @@
-#!/bin/sh
-
 # update your BugsEverywhere static HTML pages.
 
 # dir where git repos live
@@ -30,6 +28,9 @@ for repo in "$OC_GIT_DIR/"*.git ; do
 	cd "$TMP_DIR/$name"
 	be html --export-html --output="$OUT_DIR"
 	cd "$START_DIR"
+
+	# copy CSS
+	cp "$OC_CSS_FILE" "$OUT_DIR/style.css"
 done
 
 echo "BE update complete"

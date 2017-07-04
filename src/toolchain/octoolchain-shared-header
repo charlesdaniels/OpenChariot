@@ -9,8 +9,10 @@
 #
 
 OC_CFG_SEARCH_PATHS="/etc/openchariot/openchariot.cfg /usr/local/etc/openchariot/openchariot.cfg ./openchariot.cfg"
+OC_LIB_SEARCH_PATHS="/lib/openchariot /usr/local/lib/openchariot ./lib/openchariot"
 
 OC_FOUND_CFG="NO"
+OC_FOUND_LIB="NO"
 
 for p in $OC_CFG_SEARCH_PATHS ; do
 	if [ -e "$p" ] ; then
@@ -20,6 +22,21 @@ for p in $OC_CFG_SEARCH_PATHS ; do
 	fi
 done
 
+OC_LIB_DIR="ERROR"
+
+for p in $OC_LIB_SEARCH_PATHS ; do
+	if [ -d "$p" ] ; then
+		OC_LIB_DIR="$p"
+		OC_FOUND_LIB="YES"
+		break
+	fi
+done
+
+if [ "$OC_FOUND_LIB" != "YES" ] ; then
+	echo "PANIC: failed to find openchariot in any of $OC_LIB_SEARCH_PATHS"
+	exit 1
+fi
+
 if [ "$OC_FOUND_CFG" != "YES" ] ; then
 	echo "PANIC: failed to find openchariot config at any of: $OC_CFG_SEARCH_PATHS"
 	exit 1
@@ -27,6 +44,19 @@ fi
 
 if [ "$OC_MAGIC" != "OpenChariot" ] ; then
 	echo "PANIC: config was found, but OC_MAGIC was incorrect"
+	exit 1
+fi
+
+# figure out where the shared CSS file is
+OC_WEBLIB_DIR="$OC_LIB_DIR/web"
+if [ ! -d "$OC_WEBLIB_DIR" ] ; then
+	echo "PANIC: $OC_WEBLIB_DIR does not exist!"
+	exit 1
+fi
+
+OC_CSS_FILE="$OC_WEBLIB_DIR/openchariot.css"
+if [ ! -e "$OC_CSS_FILE" ] ; then
+	echo "PANIC: failed to locate shared CSS file at $OC_CSS_FILE"
 	exit 1
 fi
 

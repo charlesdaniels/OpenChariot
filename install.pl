@@ -117,4 +117,26 @@ foreach my $binary (@binaries) {
 }
 printf ("INFO: finished installing binaries\n");
 
+
+printf("INFO: installing OpenChariot libraries... ");
+my $OC_LIB_DIR = File::Spec->catdir($OC_PREFIX, "lib", "openchariot");
+my $OC_LIB_WEB_DIR = File::Spec->catdir($OC_LIB_DIR, "web");
+
+if ( ! -e $OC_LIB_DIR ) {
+	eval {mkpath($OC_LIB_DIR); 1} or
+		die("Failed to create $OC_LIB_DIR");
+}
+
+if ( ! -e $OC_LIB_WEB_DIR) {
+	eval {mkpath($OC_LIB_WEB_DIR); 1} or
+		die("Failed to create '$OC_LIB_WEB_DIR'");
+}
+
+my @weblibs = <web/*>;
+foreach my $weblib (@weblibs) {
+	copy($weblib, $OC_LIB_WEB_DIR) or
+		die("Failed to copy $weblib -> $OC_LIB_WEB_DIR");
+}
+printf("DONE\n");
+
 printf ("INFO: OpenChariot installation is complete\n");
