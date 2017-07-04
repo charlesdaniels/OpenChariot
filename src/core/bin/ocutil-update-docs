@@ -1,6 +1,8 @@
-#!/bin/sh
+# For each project, search for a .ocdoc.sh script. If it exists, run it and
+# copy "html" relative to project root into the documentation folder for the
+# project.
 
-# update documentation
+echo "Begin $0 at $(date)"
 
 HTML_OUT_DIR="$OC_WWW_ROOT/doc"
 
@@ -30,9 +32,9 @@ for repo in "$OC_GIT_DIR"/*.git ; do
 	echo "processing repository: $name"
 	git clone "$repo" "$WORK_DIR"
 	cd "$WORK_DIR"
-	if [ -e ".clsdoc.sh" ] ; then
-		echo ".clsdoc.sh found, running it"
-		./.clsdoc.sh
+	if [ -e ".ocdoc.sh" ] ; then
+		echo ".ocdoc.sh found, running it"
+		./.ocdoc.sh
 	fi
 	if [ -d "./html" ] ; then
 		echo "./html was generated, copying to $OUT_DIR"
@@ -48,4 +50,5 @@ for repo in "$OC_GIT_DIR"/*.git ; do
 done
 
 echo "all documentation has been rebuilt"
-	
+
+echo "End $0 at $(date)"

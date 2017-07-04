@@ -1,9 +1,15 @@
 # update git-arr output
 
-CONFIG_FILE=$OC_PREFIX/etc/openchariot/git-arr.conf
+echo "Begin $0 at $(date)"
 
-git-arr --config "$CONFIG_FILE" generate --output "$OC_WWW_ROOT/git-arr"
+CONFIG_FILE=$OC_PREFIX/etc/openchariot/git-arr.conf
+echo "git-arr config file: $CONFIG_FILE"
+echo "git-arr output dir:  $OC_WWW_ROOT/git-arr/"
+
+git-arr --config "$CONFIG_FILE" generate --output "$OC_WWW_ROOT/git-arr/"
 
 # copy CSS them
 # disabled for now, since the shared CSS breaks git-arr right now
 # cp "$OC_CSS_FILE" "$OC_WWW_ROOT/git-arr/static/git-arr.css"
+
+echo "End $0 at $(date)"

@@ -14,10 +14,14 @@ OC_LIB_SEARCH_PATHS="/lib/openchariot /usr/local/lib/openchariot ./lib/openchari
 OC_FOUND_CFG="NO"
 OC_FOUND_LIB="NO"
 
+OC_PREFIX="ERROR"
+
 for p in $OC_CFG_SEARCH_PATHS ; do
 	if [ -e "$p" ] ; then
 		. "$p"
 		OC_FOUND_CFG="YES"
+		OC_PREFIX=`dirname "$p"`/../..
+		OC_PREFIX=`realpath "$OC_PREFIX"`
 		break
 	fi
 done
@@ -31,6 +35,11 @@ for p in $OC_LIB_SEARCH_PATHS ; do
 		break
 	fi
 done
+
+if [ ! -e "$OC_PREFIX" ] ; then 
+	echo "PANIC: prefix $OC_PREFIX does not exist!"
+	exit 1
+fi
 
 if [ "$OC_FOUND_LIB" != "YES" ] ; then
 	echo "PANIC: failed to find openchariot in any of $OC_LIB_SEARCH_PATHS"

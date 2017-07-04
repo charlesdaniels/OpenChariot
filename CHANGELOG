@@ -57,5 +57,19 @@
 		  CSS theme, but it's commented out for the time being, since
 		  the OC CSS breaks the git-arr UI.
 		* ocutil-update-be now uses the share CSS theme.
+		* ocutil-update-git-arr now has more verbose output
+		* ocutil-update-docs now uses .ocdoc.sh, rather than .clsdoc.sh
+		  as it did previously, which was incorrect.
+		* Many small bugfixes to ocutil-generate-index:
+
+			* project documentation is now detected correctly
+			* links to project documentation are now generated
+			  correctly.
+			* bug tracker state is now detected accurately (links
+			  to the bug tracker are no longer generate if the
+			  project does not have one).
+
+		* OC_PREFIX is now set by the shared header.
+
 
 
