@@ -19,7 +19,7 @@
 
 
 
-        "TAG:bug"
+        "TAG:feature"
 
 
 
@@ -40,28 +40,28 @@
 
 
 
-    "severity": "minor", 
+    "severity": "wishlist", 
 
 
 
 
 
 
-    "status": "closed", 
+    "status": "open", 
 
 
 
 
 
 
-    "summary": "generate-index creates a link to the bug tracker page even if it does not exist", 
+    "summary": "CI/CD functionality", 
 
 
 
 
 
 
-    "time": "Tue, 27 Jun 2017 21:29:54 +0000"
+    "time": "Tue, 04 Jul 2017 19:56:11 +0000"
 
 
 

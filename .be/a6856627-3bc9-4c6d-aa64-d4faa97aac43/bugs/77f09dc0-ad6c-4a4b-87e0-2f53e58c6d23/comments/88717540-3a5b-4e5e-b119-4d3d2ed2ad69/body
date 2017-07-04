@@ -1,0 +1,10 @@
+CI/CD functionality should be added to OpenChariot. This will work similarly to
+how documentation generation works - project will be able to contain a script
+along the lines of .occi.sh which will be executed to produce a build and other
+CI/CD information.
+
+Unlike project documentation, build HTML and artifacts should be tracked on a
+per-commit bases, rather than a per-repo basis. A config parameter should be
+added to specify how far "back" (how many commits) to go when populating
+missing CI/CD results.
+
