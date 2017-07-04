@@ -1,0 +1,8 @@
+This issue is resolved as of the following commit:
+
+ad724be38d93030541b37b0bc78ea0b6437348a3
+
+As of this commit, configuration is now stored in:
+
+OC_PREFIX/etc/openchariot/openchariot.cfg
+

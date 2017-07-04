@@ -1,0 +1,10 @@
+As of:
+
+ad724be38d93030541b37b0bc78ea0b6437348a3
+
+The configuration is no longer overwritten every time the program is installed.
+However, I still maintain that it would be constructive to manage the
+git-arr configuration internally in the future, possibly by wrapping
+configuration values that should be exposed to the user in our own config file,
+then generating a git-arr config every run based on this information.
+
