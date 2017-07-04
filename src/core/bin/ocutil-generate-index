@@ -57,7 +57,7 @@ for project in "$OC_GIT_DIR"/*.git ; do
 	# link to bug tracker
 	bugs="BugsEverywhere/$name"
 	bugsfull="$OC_WWW_ROOT/$bugs"
-	if [ -d "$bugsfull/index.html" ] ; then
+	if [ -e "$bugsfull/index.html" ] ; then
 		toidx "<li><a href=\"./$bugs\">Project Bug Tracker.</a></li>"
 	else
 		toidx "<li>This project's bug tracker is not initialized.</li>"
