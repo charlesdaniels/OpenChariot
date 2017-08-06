@@ -1,0 +1,67 @@
+# for each entry in OC_PREFIX/etc/openchariot/mirrorto.list:
+#
+#	* the first field is the repo name on the local OC server (i.e.
+#	foo.git)
+#
+#	* The second field is the URL on the remote server.
+#
+#	* Fields are tab delimited
+#
+# The local copy of the repo will be force-pushed to the remote URL (with
+# --mirror). The remote repo needs to exist, and OC_GIT_USER needs to have
+# write-access to the repo without a password (pre-shared SSH keys). To this
+# end, the remote URLs have to be of the SSH variety.
+#
+# Use this functionality with care, as you can easily destroy data on the
+# remote end. If the destination is another OpenChariot server, you should
+# instead use ocutil-mirrorfrom on the remote end.
+
+oc_log_info "Beginning mirrorto."
+
+OC_MIRRORTO_LIST="$OC_ETC_DIR/mirrorto.list"
+
+if [ ! -e "$OC_MIRRORTO_LIST" ] ; then
+	oc_log_info "'$OC_MIRRORTO_LIST' does not exist, aborting."
+	exit 0
+fi
+
+cd $OC_GIT_DIR
+
+while read entry; do
+	# extract name and URL from entry
+	local_name=$(echo "$entry" | cut -f 1)
+	url=$(echo "$entry" | cut -f 2)
+	oc_log_info "Mirroring '$local_name' to '$url'."
+
+	# make sure the URL was specified
+	if [ $url == "" ] ; then
+		oc_log_warn "No URL specified for entry '$entry', aborting"
+		continue
+	fi
+
+	# make sure the repo exists locally
+	local_path="$OC_GIT_DIR/$local_name"
+	if [ ! -d "$local_path" ] ; then
+		oc_log_warn "Local repo '$local_path' does not exist, aborting"
+		continue
+	fi
+
+	# perform the push
+	oc_log_debug "pushing repo..."
+	cd "$local_path"
+	oc_runas_git "git push --quiet --force --mirror \"$url\""
+	if [ $? -ne 0 ] ; then
+		oc_log_warn "Failed to push to '$url'."
+		oc_log_info "HINT: the repo needs to exist on the remote end."
+		oc_log_info "HINT: $OC_GIT_USER needs password-less push access to the repo"
+		oc_log_info "HINT: '$url' needs to use the ssh protocol, not https."
+		continue
+	fi
+
+	oc_log_debug "finish pushing repo."
+
+
+	oc_log_info "Finished mirroring '$local_name' to '$url'."
+done < "$OC_MIRRORTO_LIST"
+
+oc_log_info "Finished mirrorto."

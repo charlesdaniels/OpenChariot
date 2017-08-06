@@ -106,6 +106,7 @@ function oc_log_error () {
 
 function oc_runas_git () {
 	# run $@ as the git user
+	oc_log_debug "Running as user '$OC_GIT_USER', '$@'"
 	sudo -u $OC_GIT_USER -H bash -c "$@"
 }
 

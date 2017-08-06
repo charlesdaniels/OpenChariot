@@ -105,3 +105,9 @@
 		  in OC_PREFIX/etc/openchariot/mirrorfrom.list
 
 			* This takes care of half of a68/fbd.
+
+		* Implemented ocutil-mirrorto, which can force-mirror-push
+		  a local repo to a remote one. Useful for mirroring projects
+		  to GitHub and the like.
+			
+			* This takes care of the other half of a68/fbd.
