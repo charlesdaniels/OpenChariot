@@ -1,0 +1,34 @@
+As part of the (currently WiP) 0.0.2 release, installation into
+~/.local/share/openchariot is supported; this is to facilitate OpenChariot
+development, and as a feature for those wishing to leverage OpenChariot as part
+of their local development workflow (i.e. to get project statistics)
+
+This functionality was tested on a macOS Sierra host. Some breadcrumbs for when
+the documentation gets written:
+
+* I had to set "path" in git-arr.conf to:
+
+	path = /Users/myusername/.local/share/openchariot/git
+
+* I used this config file:
+
+	OC_MAGIC=OpenChariot
+	OC_GITSPOOL=$HOME/.local/share/openchariot/var/openchariot/gitspool
+	OC_GITSPOOL_PERM=775
+	OC_GIT_USER=myusername
+	OC_GIT_GROUP=staff
+	OC_GIT_DIR=$HOME/.local/share/openchariot/git
+	OC_GITSPOOL_GROUP=staff
+	OC_WWW_ROOT=$HOME/.local/share/openchariot/var/www
+	OC_WWW_USER=cad
+	OC_WWW_GROUP=staff
+	OC_WWW_PERM=755
+	OC_LOGFILE=$HOME/.local/share/openchariot/var/log/openchariot.log
+	OC_GIT_DUMB_HTTP=YES
+	OC_GIT_DUMB_HTTP_DIR=$HOME/.local/share/openchariot/git
+
+It would probably also be possible to automate this.
+
+As far as dependencies, they all built and installed as on FreeBSD by
+installing their dependencies from Homebrew.
+
