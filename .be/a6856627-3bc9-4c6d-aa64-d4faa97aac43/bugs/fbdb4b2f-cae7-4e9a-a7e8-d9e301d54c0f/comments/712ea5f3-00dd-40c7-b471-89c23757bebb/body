@@ -1,0 +1,12 @@
+As of the 0.0.2 release (currently WiP), this issue has been resolved by
+the following commits:
+
+	479759d26c552a4a2c6e034f3f3ce15dfa8e77a8 Implemented ocutil-mirrorto.
+	5ef575c1d7c7a1b70b6bb95b38114af33f55b2f1 Implemented ocutil-mirrorfrom and fixed a bug.
+
+The desired functionality has been implemented, with the exception of modifying
+the README/description on the remote host which is being pushed to. However,
+since the remote end needs to have the repo already created, the suggestion
+convention is to simply set the description appropriately when creating the
+repo on the remote end.
+
