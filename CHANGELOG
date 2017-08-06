@@ -72,4 +72,16 @@
 		* OC_PREFIX is now set by the shared header.
 
 
+	2017-08-06 - Charles Daniels:
 
+		* Added support for home-directory installation;
+		  ~/.local/share/openchariot can now be used as an installation
+		  prefix.
+
+		* Implemented oc_log_* functions for debug, info, warn, and
+		  error, which should be used for log message from here on
+		  on out.
+
+		* Installer now prints prefix path if the prefix does not
+		  exist, rather than simply an error stating the prefix does
+		  not exist.

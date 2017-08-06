@@ -8,8 +8,8 @@
 # the following paths are searched, in order of priority:
 #
 
-OC_CFG_SEARCH_PATHS="/etc/openchariot/openchariot.cfg /usr/local/etc/openchariot/openchariot.cfg ./openchariot.cfg"
-OC_LIB_SEARCH_PATHS="/lib/openchariot /usr/local/lib/openchariot ./lib/openchariot"
+OC_CFG_SEARCH_PATHS="/etc/openchariot/openchariot.cfg /usr/local/etc/openchariot/openchariot.cfg $HOME/.local/share/openchariot/etc/openchariot/openchariot.cfg ./openchariot.cfg"
+OC_LIB_SEARCH_PATHS="/lib/openchariot /usr/local/lib/openchariot $HOME/.local/share/openchariot/lib/openchariot ./lib/openchariot"
 
 OC_FOUND_CFG="NO"
 OC_FOUND_LIB="NO"
@@ -36,8 +36,11 @@ for p in $OC_LIB_SEARCH_PATHS ; do
 	fi
 done
 
-if [ ! -e "$OC_PREFIX" ] ; then 
-	echo "PANIC: prefix $OC_PREFIX does not exist!"
+if [ ! -e "$OC_PREFIX" ] ; then
+	echo "PANIC: prefix was not found at any of: "
+	for p in $OC_CFG_SEARCH_PATHS ; do
+		echo "$p"
+	done
 	exit 1
 fi
 
@@ -68,5 +71,29 @@ if [ ! -e "$OC_CSS_FILE" ] ; then
 	echo "PANIC: failed to locate shared CSS file at $OC_CSS_FILE"
 	exit 1
 fi
+
+# make sure the OpenChariot bin dir is in $PATH, this is sometimes an issue
+# for prefixed development setups.
+export PATH="$PATH:$OC_PREFIX/bin"
+
+function oc_log_debug () {
+	$timestamp=$(date)
+	printf "[DEBUG][$timestamp]: $@\n" > /dev/stderr
+}
+
+function oc_log_info () {
+	$timestamp=$(date)
+	printf "[INFO][$timestamp]: $@\n" > /dev/stderr
+}
+
+function oc_log_warn () {
+	$timestamp=$(date)
+	printf "[WARN][$timestamp]: $@\n" > /dev/stderr
+}
+
+function oc_log_error() {
+	$timestamp=$(date)
+	printf "[ERROR][$timestamp]: $@\n" > /dev/stderr
+}
 
 # Note that OC_VERSION is injected below this line during build.

@@ -38,7 +38,8 @@ if (defined $ARGV[0]) {
 # validate prefix
 printf("INFO: prefix is: '$OC_PREFIX'\n");
 if (! -e $OC_PREFIX) {
-	printf("PANIC: prefix does not exist, aborting install!\n");
+	printf("PANIC: prefix '$OC_PREFIX' does not exist,");
+	printf(" aborting install!\n");
 	die;
 }
 
