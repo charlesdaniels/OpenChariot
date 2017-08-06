@@ -44,6 +44,8 @@ if [ ! -e "$OC_PREFIX" ] ; then
 	exit 1
 fi
 
+OC_ETC_DIR="$OC_PREFIX/etc/openchariot"
+
 if [ "$OC_FOUND_LIB" != "YES" ] ; then
 	echo "PANIC: failed to find openchariot in any of $OC_LIB_SEARCH_PATHS"
 	exit 1
@@ -77,23 +79,34 @@ fi
 export PATH="$PATH:$OC_PREFIX/bin"
 
 function oc_log_debug () {
-	$timestamp=$(date)
+	if [ $OC_SUPPRESS_DEBUG == "YES" ] ; then
+		return
+	fi
+	timestamp=$(date)
 	printf "[DEBUG][$timestamp]: $@\n" > /dev/stderr
 }
 
 function oc_log_info () {
-	$timestamp=$(date)
+	if [ $OC_SUPPRESS_INFO == "YES" ] ; then
+		return
+	fi
+	timestamp=$(date)
 	printf "[INFO][$timestamp]: $@\n" > /dev/stderr
 }
 
 function oc_log_warn () {
-	$timestamp=$(date)
+	timestamp=$(date)
 	printf "[WARN][$timestamp]: $@\n" > /dev/stderr
 }
 
-function oc_log_error() {
-	$timestamp=$(date)
+function oc_log_error () {
+	timestamp=$(date)
 	printf "[ERROR][$timestamp]: $@\n" > /dev/stderr
+}
+
+function oc_runas_git () {
+	# run $@ as the git user
+	sudo -u $OC_GIT_USER -H bash -c "$@"
 }
 
 # Note that OC_VERSION is injected below this line during build.

@@ -1,0 +1,43 @@
+# create read-only mirrors from remote git repos
+
+OC_MIRRORFROM_LIST="$OC_ETC_DIR/mirrorfrom.list"
+
+if [ ! -e "$OC_MIRRORFROM_LIST" ] ; then
+	oc_log_info "'$OC_MIRRORFROM_LIST' does not exist, aborting."
+	exit 0
+fi
+
+cd $OC_GIT_DIR
+
+while read url; do
+	# extract the repo's destination folder
+	oc_log_info "Mirroring from repo '$url'."
+	reponame=$(echo "$url" | rev | cut -d/ -f1 | rev)
+	reponame=$(basename "$reponame" .git)
+	oc_log_debug "Repo name seems to be '$reponame'."
+
+	# clone the repo
+	rm -rf "$OC_GIT_DIR/$reponame.new"
+	result=$(oc_runas_git "cd $OC_GIT_DIR; git clone --mirror $url $reponame.new 2>&1")
+	if [ $? -ne 0 ] ; then
+		oc_log_warn "May have failed cloning '$url', output: \n$result"
+		oc_log_warn "Aborting mirror operation for '$url'"
+		continue
+	fi
+
+	# overwrite any existing copy
+	oc_log_debug "Move '$reponame.new' -> '$reponame.git'"
+	chmod -R "u+w" "$OC_GIT_DIR/$reponame.git"
+	rm -rf "$OC_GIT_DIR/$reponame.git"
+	mv "$OC_GIT_DIR/$reponame.new/" "$OC_GIT_DIR/$reponame.git/"
+	chown -R "$OC_GIT_USER:$OC_GIT_GROUP" "$OC_GIT_DIR/$reponame.git"
+
+	# write description to the freshly cloned repo
+	echo "Read-only mirror of '$reponame' from '$url'" > "$OC_GIT_DIR/$reponame.git/description"
+
+	# make the repo read-only to prevent pushes
+	chmod -R "a-w" "$OC_GIT_DIR/$reponame.git"
+
+	oc_log_info "Finished mirroring '$url'."
+
+done < "$OC_MIRRORFROM_LIST"

@@ -82,6 +82,26 @@
 		  error, which should be used for log message from here on
 		  on out.
 
+			* oc_log_debug may be suppressed by setting
+			  OC_SUPPRESS_DEBUG=YES in openchariot.cfg, which is
+			  the default.
+
+			* oc_log_info may be suppressed by setting
+			  OC_SUPPRESS_INFO=YES in openchariot.cfg; the default
+			  is NO (info logs are shown).
+
 		* Installer now prints prefix path if the prefix does not
 		  exist, rather than simply an error stating the prefix does
 		  not exist.
+
+		* Updated ocutil-update-gitstats to use new logging functions.
+
+		* Fixed a bug in ocutil-update-gitstats where packed refs
+		  were not detected correctly, and non-empty repositories
+		  were being flagged as empty.
+
+		* Implemented ocutil-mirrorfrom, which will create read-only
+		  mirrors for each of a newline-delimited list of URLs given
+		  in OC_PREFIX/etc/openchariot/mirrorfrom.list
+
+			* This takes care of half of a68/fbd.

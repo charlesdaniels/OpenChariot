@@ -25,6 +25,13 @@ if [ $? -ne 0 ] ; then
 	echo "PANIC: ocutil-process-gitspool failed; consult $OC_LOGFILE"
 	exit 1
 fi
+
+ocutil-mirrorfrom >> $OC_LOGFILE 2>&1
+if [ $? -ne 0 ] ; then
+	echo "PANIC: ocutil-mirrorfrom failed; consult $OC_LOGFILE"
+	exit 1
+fi
+
 ocutil-update-be >> $OC_LOGFILE 2>&1
 if [ $? -ne 0 ] ; then
 	echo "PANIC: ocutil-update-be failed; consult $OC_LOGFILE"

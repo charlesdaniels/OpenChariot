@@ -12,26 +12,21 @@ export GDFONTPATH=/usr/share/fonts/liberation
 for repo in "$OC_GIT_DIR/"*.git ; do
 	name=$(basename "$repo" .git)
 
+	oc_log_info "Generatic gitstats page for repo '$name'."
+
 	# validate that the repo is non-empty, which causes gitstats to hang
-	for head in "$repo/refs/heads"/* ; do
-		flag="OK"
-		if [ ! -e "$head" ] ; then
-			echo "WARNING: $name appears empty, ignoring it"
-			flag="FAIL"
-		fi
-	done
-	if [ $flag == "FAIL" ] ; then
-		echo "INFO: skipping $name because it was flagged as empty"
+	if [ $(cd "$repo"; git show-ref | wc -l) == "0" ] ; then
+		oc_log_warn "$repo seems to be empty, it will be skipped"
 		continue
 	fi
 
 	OUT_DIR="$HTML_OUT_DIR/$name"
 	mkdir -p "$OUT_DIR"
-	echo "Processing repo $name..."
+	oc_log_info "Processing repo $name..."
 	gitstats "$repo" "$OUT_DIR"
 
 	# copy CSS
 	cp "$OC_CSS_FILE" "$OUT_DIR/gitstats.css"
 done
 
-echo "gitstats update complete"
+oc_log_info "gitstats update complete"
