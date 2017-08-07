@@ -60,7 +60,7 @@ with open(VERSION_FILE) as f:
 
 # set sphinx variables
 version = version_line.split("-")[0]
-release = version_line.split("-")[1]
+release = version_line
 
 print("Read version '{}', release '{}'".format(version, release))
 
