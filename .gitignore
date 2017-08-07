@@ -1,2 +1,5 @@
 .be/id-cache
 *.swp
+*.tar.gz
+src/doc/build
+build
