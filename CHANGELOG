@@ -31,7 +31,7 @@
 		* Wrote installer Makefile
 		* Added ocutil-spooler
 
-0.0.2:
+0.0.2-RC1:
 
 	2017-06-28 - Charles Daniels:
 
@@ -111,3 +111,11 @@
 		  to GitHub and the like.
 			
 			* This takes care of the other half of a68/fbd.
+
+0.0.2-RC2:
+
+	2017-08-06 - Charles Daniels:
+
+		* Fixed an issue where `make redist-pdf` would not actually
+		  invoke the `build` rule, and thus would generate redist
+		  tarballs that would break when installed.

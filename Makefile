@@ -40,7 +40,7 @@ redist: build doc
 	tar cvfpz "$(REDIST_NAME).tar.gz" "$(REDIST_NAME)"
 	mv "$(REDIST_NAME)" "$(BUILD_DIR)"
 
-redist-pdf: doc-pdf doc
+redist-pdf: doc-pdf doc build
 	@# Build redist tarball with both HTML and PDF format documentation
 	rm -rf "$(BUILD_DIR)/doc/build"
 	mv "$(BUILD_DIR)" "$(REDIST_NAME)"
