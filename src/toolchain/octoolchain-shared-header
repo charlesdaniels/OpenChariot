@@ -78,7 +78,7 @@ fi
 # for prefixed development setups.
 export PATH="$PATH:$OC_PREFIX/bin"
 
-function oc_log_debug () {
+oc_log_debug () {
 	if [ $OC_SUPPRESS_DEBUG == "YES" ] ; then
 		return
 	fi
@@ -86,7 +86,7 @@ function oc_log_debug () {
 	printf "[DEBUG][$timestamp]: $@\n" > /dev/stderr
 }
 
-function oc_log_info () {
+oc_log_info () {
 	if [ $OC_SUPPRESS_INFO == "YES" ] ; then
 		return
 	fi
@@ -94,17 +94,17 @@ function oc_log_info () {
 	printf "[INFO][$timestamp]: $@\n" > /dev/stderr
 }
 
-function oc_log_warn () {
+oc_log_warn () {
 	timestamp=$(date)
 	printf "[WARN][$timestamp]: $@\n" > /dev/stderr
 }
 
-function oc_log_error () {
+oc_log_error () {
 	timestamp=$(date)
 	printf "[ERROR][$timestamp]: $@\n" > /dev/stderr
 }
 
-function oc_runas_git () {
+oc_runas_git () {
 	# run $@ as the git user
 	oc_log_debug "Running as user '$OC_GIT_USER', '$@'"
 	sudo -u $OC_GIT_USER -H bash -c "$@"

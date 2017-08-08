@@ -109,7 +109,7 @@
 		* Implemented ocutil-mirrorto, which can force-mirror-push
 		  a local repo to a remote one. Useful for mirroring projects
 		  to GitHub and the like.
-			
+
 			* This takes care of the other half of a68/fbd.
 
 0.0.2-RC2:
@@ -119,3 +119,8 @@
 		* Fixed an issue where `make redist-pdf` would not actually
 		  invoke the `build` rule, and thus would generate redist
 		  tarballs that would break when installed.
+
+		* Fixed an issue where the shared header used a syntax for
+		  declaring functions that `sh` on FreeBSD 11 did not like.
+		  This fixes a crash due to syntax error on FreeBSD 11,
+		  and probably other systems.
