@@ -133,3 +133,5 @@
 
 		* Sphinx now uses `python3`.
 
+		* Fixed issue where failure to specify OC_SUPPRESS_* would
+		  cause crashes on some systems due to incorrect quoting sytle.

@@ -34,7 +34,7 @@ while read entry; do
 	oc_log_info "Mirroring '$local_name' to '$url'."
 
 	# make sure the URL was specified
-	if [ $url == "" ] ; then
+	if [ "$url" == "" ] ; then
 		oc_log_warn "No URL specified for entry '$entry', aborting"
 		continue
 	fi

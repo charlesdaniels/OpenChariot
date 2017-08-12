@@ -79,7 +79,7 @@ fi
 export PATH="$PATH:$OC_PREFIX/bin"
 
 oc_log_debug () {
-	if [ $OC_SUPPRESS_DEBUG == "YES" ] ; then
+	if [ "$OC_SUPPRESS_DEBUG" == "YES" ] ; then
 		return
 	fi
 	timestamp=$(date)
@@ -87,7 +87,7 @@ oc_log_debug () {
 }
 
 oc_log_info () {
-	if [ $OC_SUPPRESS_INFO == "YES" ] ; then
+	if [ "$OC_SUPPRESS_INFO" == "YES" ] ; then
 		return
 	fi
 	timestamp=$(date)
