@@ -44,13 +44,21 @@ for project in "$OC_GIT_DIR"/*.git ; do
 	fi
 
 	# link to README
-	readme="f=README.rst.html"
-	if [ ! -e "$treefull/$readme" ] ; then
+	if [ -e "$treefull/f=README.rst.html" ] ; then
+		readme="f=README.rst.html"
+	elif [ -e "$treefull/f=README.md.html" ] ; then
 		readme="f=README.md.html"
+	elif [ -e "$treefull/f=README.txt.html" ] ; then
+		readme="f=README.txt.html"
+	elif [ -e "$treefull/f=README.html" ] ; then
+		readme="f=README.html"
 	fi
+
 	if [ ! -e "$treefull/$readme" ] ; then
+		# the README does not exist
 		toidx '<li>This project has no README!</li>'
 	else
+		# the readme does exist
 		toidx "<li><a href=\"./$tree/$readme\">Project README.</a></li>"
 	fi
 

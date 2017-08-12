@@ -124,3 +124,12 @@
 		  declaring functions that `sh` on FreeBSD 11 did not like.
 		  This fixes a crash due to syntax error on FreeBSD 11,
 		  and probably other systems.
+
+0.0.2-RC3
+
+	2017-08-12 - Charles Daniels:
+
+		* ocutil-generate-index now detects README.txt and README.
+
+		* Sphinx now uses `python3`.
+
